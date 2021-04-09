@@ -1,0 +1,14 @@
+{
+  "name": "typescript-learning",
+  "version": "1.0.0",
+  "description": "typescript learning note",
+  "main": "index.ts",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "author": "knightyun",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
+}
