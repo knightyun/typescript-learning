@@ -169,3 +169,50 @@ function fn27(arg: string | number): void {
     arg += 1;
   }
 }
+
+
+/**
+ * 类型别名
+ * 
+ * 为一些基本类型或复杂类型定义一个别名
+ */
+
+type MyString = string;
+type StrOrNum = string | number;
+type StrAndNum = string & number;
+type callback = (arg: string) => boolean
+
+// 像使用基本类型一样使用类型别名
+let myString: MyString;
+
+// 类型别名可以是 泛型
+type TypeArr<T> = T[];
+const strArr: TypeArr<string> = ['a'];
+
+// 类型别名可以 自己引用自己（嵌套）
+type NestObj = {
+  str: string,
+  obj?: NestObj,
+}
+const nestObj: NestObj = {
+  str: 'abc',
+  obj: { str: 'def' },
+}
+
+
+/**
+ * 字面量类型
+ * 
+ * 使用该类型的变量值需要等于字面值
+ */
+type OneOrTwo = 'one' | 'two' | 3 | true;
+
+let num: OneOrTwo;
+
+num = 'one';
+num = 'two';
+num = 3;
+num = true;
+
+// 取类型中不存在的值会报错
+// num = 'three'; // Error

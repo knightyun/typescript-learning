@@ -309,3 +309,16 @@ const num9: number = <number>anyVar2
 
 // 调用方法需要加括号
 const str3: string = (anyVar2 as number).toFixed(2);
+
+interface IObj {
+  one?: string;
+}
+
+function fnn(arg: IObj): string {
+  // 直接返回会报错，one 属性可能不存在
+  // return arg.one; // Error
+
+  // 如果自己当前确信 one 属性存在，则可以在属性最后添加感叹号（!），
+  // 告诉 ts 无需检查，属性确实存在；
+  return arg.one!;
+}
