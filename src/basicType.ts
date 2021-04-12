@@ -201,7 +201,7 @@ let n: null = null;
 let num5: number = 123;
 // num5 = undefined;  // Pass
 // num5 = null;       // Pass
-// void1 = undefined; // Pass
+void1 = undefined; // Pass
 // void1 = null;      // Pass
 
 // "strictNullChecks": true

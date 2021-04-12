@@ -216,3 +216,153 @@ num = true;
 
 // 取类型中不存在的值会报错
 // num = 'three'; // Error
+
+
+/**
+ * 可辨识联合（Discriminated Union）
+ * 
+ * 当联合类型中的每一个类型，都包含一个为字面量类型的共有属性时，
+ * ts 将会把这个联合类型识别为 可辨识联合
+ */
+interface Square {
+  kind: "square";
+  size: number;
+}
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+// 该联合类型每个接口类型都含有 kind 属性，并且是字符串字面量类型，
+// kind 被称为可辨识联合 Shape 的 可辨识特征（Discriminant）
+type Shape = Square | Circle;
+
+function area(s: Shape): number {
+  // 直接访问会提示 Circle 没有 size 属性
+  // return s.size ** 2; // Error
+
+  // 使用 switch 或者 if 判断 kind 属性后，ts 会自动限制为指定类型
+  switch (s.kind) {
+    case "square":
+      return s.size ** 2;
+
+    // 但是仍然存在一个问题，漏写判断时 ts 并不会提示
+    // case "circle":
+    //   return Math.PI * s.radius ** 2;
+
+    default:
+      return 0;
+  }
+}
+
+// 解决提示漏写 case 的问题，可以利用 ts 类型保护的特性，
+// 即代码中判断了所有联合类型的可能性之后，该联合类型会被限制为 never 类型，
+// 所以在最后尝试将联合类型赋值给一个 never 类型，如果报错就说明还有情况没有判断到；
+function area2(s: Shape): number {
+  switch (s.kind) {
+    case 'square':
+      return s.size ** 2;
+
+    case "circle":
+      return Math.PI * s.radius ** 2;
+
+    default:
+      // 如果上面的 case 漏写一个，下面就会报错，
+      // 提示 不能将 xxx 分配给 never；
+      let result: never = s;
+      return result;
+  }
+}
+
+
+/**
+ * 索引类型
+ */
+interface IObj4 {
+  name: string,
+  age: number,
+}
+
+// keyof 为索引查询操作符，表示类型是接口所有属性的 联合类型
+// 等价于：
+// type Key4 = 'name' | 'age';
+type Key1 = keyof IObj4;
+let key1: Key1;
+
+key1 = 'name';
+key1 = 'age';
+// key4 = 'hobby'; // Error
+
+// 或者获取普通对象的类型的索引
+let obj7 = { name: '', age: 0 };
+type Key2 = keyof typeof obj7;
+let key2: Key2 = 'name';
+
+
+/**
+ * 映射类型
+ * 
+ * 将类型中每个属性进行映射转变，类似数组的 map 方法
+ */
+interface IObj5 {
+  name: string;
+  age: number;
+}
+
+type Map1 = {
+  // 为接口中每个属性添加 只读与可选 标识
+  readonly [K in keyof IObj5]?: IObj5[K];
+
+  // 无法新增额外的属性
+  // hobby: string; // Error
+};
+
+// 等同于：
+// type Map1 = {
+//     readonly name?: string;
+//     readonly age?: number;
+// }
+
+// 也可以写一个通用的转变泛型
+type TMap2<T> = {
+  readonly [K in keyof T]?: T[K];
+}
+
+type Map2 = TMap2<IObj5>;
+
+// ts 也内置了一些条件类型，如：
+
+/**
+ * Readonly - 属性全转换为只读：
+ */
+type Map3 = Readonly<{ a: string }>; // { readonly a: string }
+
+/**
+ * Partial - 属性全转换为可选：
+ */
+type Map4 = Partial<{ a: string }>; // { a?: string | undefined }
+
+/**
+ * Pick - 属性拷贝
+ */
+type Map5 = Pick<{ a: string; b: number }, 'a'>; // { a: string }
+
+/**
+ * Exclude<T, U> - 从 T 中剔除可以赋值给 U 的类型
+ */
+type Map6 = Exclude<'a' | 'b', 'b'>; // 'a'
+
+/**
+ * Extract<T, U> - 从 T 中提取可以赋值给 U 的类型
+ */
+type Map7 = Extract<'a' | 'b' | 'c', 'a' | 'b'>; // 'a' | 'b'
+
+/**
+ * NonNullable<T> - 从 T 中剔除 null 和 undefined
+ */
+type Map8 = NonNullable<'a' | null | undefined>; // 'a'
+
+/**
+ * ReturnType<T> - 获取函数返回值的类型
+ */
+type Map9 = ReturnType<() => string>; // string

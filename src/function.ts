@@ -18,6 +18,11 @@ let fn6 = function (arg: string): boolean {
 // 箭头函数
 fn6 = (arg: string): boolean => arg === "";
 
+// 箭头式类型定义
+// 箭头前为参数类型，后为返回值类型
+let fn61: (arg: string) => boolean;
+fn61 = (arg) => arg === '';
+
 
 /**
  * 可选参数
