@@ -45,7 +45,7 @@ strOrNum = { num: 123 };
 
 
 /**
- * 类型保护
+ * 类型守卫
  * 
  * 在运行时 检查以确保某个作用域类型 的表达式
  */
@@ -75,10 +75,10 @@ function fn22(arg: number | number[]): number {
   }
 }
 
-// 由于多次书写类型断言很麻烦，所以 ts 出现了 类型保护 的机制:
+// 由于多次书写类型断言很麻烦，所以 ts 出现了 类型守卫 的机制:
 
 /**
- * typeof 类型保护：
+ * typeof 类型守卫：
  */
 function fn23(arg: number | number[]): number {
   // ts 会识别 typeof 语句，并将当前 if 区块中的 arg 都当成 number，
@@ -96,7 +96,7 @@ function fn23(arg: number | number[]): number {
 }
 
 /** 
- * truthiness 类型保护
+ * truthiness 类型守卫
  */
 function fn24(arg: number[] | null): void {
   if (typeof arg === 'object') {
@@ -104,8 +104,8 @@ function fn24(arg: number[] | null): void {
     // 并且 null 不能使用 for...of...
     // for (let i of arg) { i; } // Error
 
-    // 使用 truthiness 类型保护可以进一步限制变量为 数组类型，
-    // !!arg 或者 Boolean() 等涉及布尔运算的操作都能触发这种类型保护；
+    // 使用 truthiness 类型守卫可以进一步限制变量为 数组类型，
+    // !!arg 或者 Boolean() 等涉及布尔运算的操作都能触发这种类型守卫；
     if (arg) {
       for (let i of arg) { i; }
     }
@@ -113,7 +113,7 @@ function fn24(arg: number[] | null): void {
 }
 
 /**
- * 等式类型保护
+ * 等式类型守卫
  */
 function fn25(a: string | number, b: string | boolean): void {
   // 直接使用参数的方法会报错，因为可能是 number 类型
@@ -121,7 +121,7 @@ function fn25(a: string | number, b: string | boolean): void {
   // b.toUpperCase(); // Error
 
   // 使用了等式判断后，ts 会自动取二者的交集类型，即 string，就可以正常调用方法了，
-  // 也可以使用类似 a === null 的直接与基本类型对比的判断触发类型保护；
+  // 也可以使用类似 a === null 的直接与基本类型对比的判断触发类型守卫；
   if (a === b) {
     a.toUpperCase();
     b.toUpperCase();
@@ -129,7 +129,7 @@ function fn25(a: string | number, b: string | boolean): void {
 }
 
 /**
- * instanceof 类型保护
+ * instanceof 类型守卫
  */
 function fn26(arg: Number | String): void {
   //（x instanceof y) 用于检查 x 的原型链中是否包含 y.prototype
@@ -137,7 +137,7 @@ function fn26(arg: Number | String): void {
   // 直接调用方法会报错，Number 类型不存在该方法
   // arg.toUpperCase(); // Error
 
-  // instanceof 表达式会触发类型保护，限制 arg 为 String 类型
+  // instanceof 表达式会触发类型守卫，限制 arg 为 String 类型
   if (arg instanceof String) {
     arg.toUpperCase();
   }
@@ -147,14 +147,14 @@ fn26('abc');
 // fn26(true); // Error
 
 /**
- * 自定义类型保护
+ * 自定义类型守卫
  * 
  * 首先自定义一个函数来判断参数类型，返回值类型具有固定格式：
  * param is type
  * 其中 param 必须是参数，type 是类型
  */
 function isStr(arg: string | number): arg is string {
-  // 内部可以使用其他 类型保护
+  // 内部可以使用其他 类型守卫
   return typeof arg === 'string';
 
   // 也可以直接使用类型断言
@@ -162,7 +162,7 @@ function isStr(arg: string | number): arg is string {
 }
 
 function fn27(arg: string | number): void {
-  // 像使用其他类型保护一样引用 自定义函数，触发类型保护
+  // 像使用其他类型守卫一样引用 自定义函数，触发类型守卫
   if (isStr(arg)) {
     arg.toUpperCase();
   } else {
@@ -255,7 +255,7 @@ function area(s: Shape): number {
   }
 }
 
-// 解决提示漏写 case 的问题，可以利用 ts 类型保护的特性，
+// 解决提示漏写 case 的问题，可以利用 ts 类型守卫的特性，
 // 即代码中判断了所有联合类型的可能性之后，该联合类型会被限制为 never 类型，
 // 所以在最后尝试将联合类型赋值给一个 never 类型，如果报错就说明还有情况没有判断到；
 function area2(s: Shape): number {
