@@ -42,6 +42,7 @@ let obj1: IExp = {
 };
 class CS1 extends CExp {}
 
+
 // 动态导入模块
 // 首先申明 require 函数，或者直接安装申明文件：npm i -D @types/node
 // declare function require(name: string): any;
@@ -54,3 +55,53 @@ if (Math.random() > 0.5) {
 }
 
 bol = bol2;
+
+
+/**
+ * 模块解析过程
+ */
+
+// 导入模块示例：
+// import * from 'test';
+
+// 相对导入：
+//   带有路径标识，例如：'./test', '/test', '../test'；
+// 非相对导入：
+//   不带路径标识，例如：'test', 'test/test', '@test/test';
+
+// 相对导入：
+// import * from './test'; 的解析模块文件顺序：
+//
+//  ./test.ts
+//  ./test.tsx
+//  ./test.d.ts
+//  ./test/package.json （如果文件有指定 "types" 属性，则取它的值对应的文件）
+//  ./test/index.ts
+//  ./test/index.tsx
+//  ./test/index.d.ts
+
+// 非相对导入：
+// import * from 'test'; 的解析模块文件顺序
+//
+//  ./node_modules/test.ts
+//  ./node_modules/test.tsx
+//  ./node_modules/test.d.ts
+//  ./node_modules/test/package.json （如果文件有指定 "types" 属性，则取它的值对应的文件）
+//  ./node_modules/test/index.ts
+//  ./node_modules/test/index.tsx
+//  ./node_modules/test/index.d.ts
+//  ...（依次寻找上一级目录的 node_modules 文件夹）
+
+// 配置文件中指定如何 解析非相对模块：
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "test": [
+//         "test/test", // 这里路径是相对于上面的 "baseUrl" 属性值
+//         "test1/test1", // 可以指定多个回退路径，文件不存在会依次解析下一个
+//         "*" // 模块名称与文件相同（当前路径下）可以直接使用通配符
+//       ]
+//     }
+//   }
+// }
