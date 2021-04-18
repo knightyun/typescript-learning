@@ -20,6 +20,8 @@ export class CExp {
   str: string = "abc";
 }
 
+export type StrOrNum = string | number;
+
 // 先申明后导出
 export { expBol };
 

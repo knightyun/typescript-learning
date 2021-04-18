@@ -20,6 +20,9 @@ import renamedBol from "./defaultExport";
 // 导入模块所有内容到一个变量（对象）中
 import * as exportObj from "./export";
 
+// 导入类型变量的语法
+import type { StrOrNum } from './export';
+
 // 直接导入文件（没有包含 export），使引入文件中的所有全局变量
 // 在当前文件可访问，例如：globalVar1
 import "./global";
@@ -41,6 +44,8 @@ let obj1: IExp = {
   num: 123,
 };
 class CS1 extends CExp {}
+
+let str2: StrOrNum = 'abc';
 
 
 // 动态导入模块
