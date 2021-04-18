@@ -78,17 +78,18 @@ fn11('a');
 
 
 /**
- * 重载
+ * 重载（overload）
  * 
  * 函数根据传参的不同会有不同的返回类型
  */
 
 // 重载手段是为一个函数提供多个类型定义
-// 检查类型时是从上至下查找第一个匹配的定义，所以务必把最精确的定义放最前面
 function fn12(x: number[]): number;
 function fn12(x: string): string;
 function fn12(x: boolean): boolean;
-function fn12(x: any): any { // 这里并不是重载的一部分，真正重载的只有上面两个
+function fn12(x: any): any {
+  // 上面一行只是函数的实现签名，为了兼容上面两个重载签名，不能被直接调用，
+  // 同时它也并不算作一个重载，真正的重载签名只有最上面的三个
   if (typeof x === 'object') {
     return x[0];
   } else {

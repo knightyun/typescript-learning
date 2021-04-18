@@ -58,7 +58,7 @@ fn15<IObj2>({ a: 123, b: 'abc' });
 
 // 由于 T 表示任意类型，所以不能直接访问某些属性
 function fn16<T>(arg: T): T {
-  // return arg.toString();
+  // return arg.toString(); // Error
   return arg
 }
 
@@ -67,7 +67,7 @@ function fn17<T>(arg: T[]): string {
   return arg.toString();
 }
 
-// 类型变量可以使用其中字母或者单词（通常使用 T）
+// 类型变量可以使用其他字母或者单词（通常使用 T）
 // 也可以存在多个变量
 function fn18<M, My, other>(arg: M): M {
   let one: My;
