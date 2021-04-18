@@ -296,3 +296,20 @@ class CSI3 extends CSPro implements IClassPro {
 //   pro = 'ccc';
 //   attr1 = 'ddd';
 // }
+
+
+/**
+ * 接口合并
+ */
+interface IMerge {
+  str: string;
+}
+interface IMerge {
+  num: number;
+}
+
+// 接口可以多次重复申明，引用时会取所有申明的 并集
+const mergeObj: IMerge = {
+  str: 'abc',
+  num: 123,
+};
