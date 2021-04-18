@@ -1,4 +1,4 @@
-// 使用 引用标签 来告诉编译器文件之间的关联
+// 使用 引用标签 来告诉编译器文件之间的关联，这种指令只能放在文件顶部，或者前面是注释
 /// <reference path="./nameMulti-1.ts" />
 
 namespace nameMulti {
