@@ -1,3 +1,16 @@
+// 顶部写声明入口文件的描述格式：
+//
+// Type definitions for [~THE LIBRARY NAME~] [~OPTIONAL VERSION NUMBER~]
+// Project: [~THE PROJECT NAME~]
+// Definitions by: [~YOUR NAME~] <[~A URL FOR YOU~]>
+//
+// 例如：
+//
+// Type definitions for demo 0.1.0
+// Project: demo-project
+// Definitions by: Knight Huang <https://github.com/knightyun>
+
+
 /************************************************************
  * 声明文件
  *

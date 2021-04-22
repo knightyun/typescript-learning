@@ -25,6 +25,15 @@ namespace Name2 {
   let num: number = 1;
 }
 
+// 但是变量和接口名可以重复，分别表示不同的结构
+let CommonName;
+interface CommonName {};
+
+// 类、接口、命名空间也可以名称相同，都表示为同一个类型结构
+class CommonName1 {};
+interface CommonName1 {};
+namespace CommonName1 {};
+
 
 /**
  * 命名空间 嵌套
