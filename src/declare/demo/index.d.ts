@@ -18,6 +18,13 @@
  * 常用的声明文件模板见：../templates/*
  ************************************************************/
 
+// 首先，不要在声明文件中使用 path 引入指令：
+// /// <reference path="..." />
+// 应该使用 types 指令替代（该 npm 包依赖于其他全局库）：
+// /// <reference types="typescript" />
+// 依赖于模块则使用 import 语句；
+
+
 // 声明 全局变量
 declare var dNum: number;
 
