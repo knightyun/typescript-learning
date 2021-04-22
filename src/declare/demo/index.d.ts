@@ -7,7 +7,7 @@
 // 例如：
 //
 // Type definitions for demo 0.1.0
-// Project: demo-project
+// Project: https://demo-project.com
 // Definitions by: Knight Huang <https://github.com/knightyun>
 
 
@@ -15,6 +15,7 @@
  * 声明文件
  *
  * ts 中声明文件都以 .d.ts 作为后缀
+ * 常用的声明文件模板见：../templates/*
  ************************************************************/
 
 // 声明 全局变量
