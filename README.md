@@ -4,7 +4,7 @@ TypeScript 学习笔记（`/src` 目录下）
 
 ---------------------------------------
 
-### 基本类型（[./src/basicType.ts](./src/basicType.ts)）
+### 基本类型（[basicType.ts](./src/basicType.ts)）
 
 
 ### 接口（[interface.ts](./src/interface.ts)）
