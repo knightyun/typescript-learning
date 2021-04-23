@@ -25,8 +25,8 @@ declare function dFn1(arg: number): number {
 
 // 带有命名空间的变量
 declare namespace DName {
-  // 内部变量不会与全局冲突
-  // 直接写变量申明，不用再加 declare
+  // 在声明文件中用命名空间时，直接写变量申明，
+  // 不用再加 declare 或 export（区别于 ts 文件）
   let dNum: number;
 
   // 使用嵌套的命名空间

@@ -5,12 +5,12 @@
  ************************************************************/
 
 // 因为该项目配置了自身作为依赖项，所以可以导入自身的模块
-import { mType, mFn, mNum, mStr } from 'typescript-learning';
+import { dType, dFn, dNum, _oStr } from 'typescript-learning';
 
 
-console.log(mFn(mNum)); // 123
+console.log(dFn(dNum)); // 123
 
-console.log(mFn(mStr)); // 'abc'
+console.log(dFn(_oStr)); // 'abc'
 
-let num1: mType = 456;
-console.log(mFn(num1)); // 456
+let num1: dType = 456;
+console.log(dFn(num1)); // 456

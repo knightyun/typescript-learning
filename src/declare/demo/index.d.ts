@@ -30,22 +30,28 @@
 
 // 首先，不要在声明文件中使用 path 引入指令：
 // /// <reference path="./other" />
-// 应该使用 types 指令替代（该 npm 包依赖于其他全局库）：
+// 应该使用 types 指令替代（该 npm 包依赖于其他全局库，即声明了全局变量的库），
+// 可以使用相对或者非相对引入：
 // /// <reference types="typescript" />
-/// <reference types="./other" />
-// 依赖于模块则使用 import 语句；
+// /// <reference types="./other" />
 
 
-export declare type mType = string | number;
+export declare type dType = string | number;
 
-export declare function mFn(arg: mType): mType;
+export declare function dFn(arg: dType): dType;
 
-export declare const mNum: mType;
+export declare const dNum: dType;
 
-export declare const mStr: oType;
+// 如果依赖于模块库，则需要使 import：
+import { oType } from './other';
+export declare const _oStr: oType;
 
 // 虽然语法上可以指定默认值，但是实际值还是取的 index.ts 中对应的值
 // export declare const mNum: mType = 321;
+
+// 使用引入的全局库中的全局变量，如果全局库用了命名空间，
+// 则需要在变量前添加 命名空间访问路径；
+// export declare const mStr: other.IOther;
 
 
 // 如果要使用默认导出，且配置了 "esModuleInterop": true，
