@@ -47,9 +47,9 @@ TypeScript 学习笔记（`/src` 目录下）
 
 ### 声明
 
-#### 声明文件（[declare/demo/index.d.ts](./src/declare/demo/index.d.ts)）
+#### 声明文件（[declare/demo/index.d.ts](./src/declare/demo/global.d.ts)）
 
-#### 声明使用（[declare/declare.ts](./src/declare/declare.ts)）
+#### 声明使用（[declare/declare.ts](./src/declare/useDeclare.ts)）
 
 #### 声明文件模板（[declare/templates/](./src/declare/templates/)）
 

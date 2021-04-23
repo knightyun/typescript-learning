@@ -10,7 +10,7 @@
 // 该指令表示对依赖的引用；
 // 解析包的机制与 import 类似，可以当作用于导入 声明包；
 // 一般在声明文件中使用该指令，可以使用相对或非相对引用，
-/// <reference types="./demo" />
+/// <reference types="./demo/global" />
 // 上面的指令会寻找 ./demo.d.ts 或 ./demo/index.d.ts 声明文件
 
 // 下面的指令表示引用 node 的声明包：
@@ -62,3 +62,4 @@ class DCS1 extends DCS {
 }
 const dcs1 = new DCS1('abc');
 
+export {};

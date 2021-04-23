@@ -2,14 +2,21 @@
   "name": "typescript-learning",
   "version": "1.0.0",
   "description": "typescript learning note",
-  "main": "index.ts",
+  "main": "./src/declare/demo/index.ts",
+  "types": "./src/declare/demo/index.d.ts",
   "scripts": {
-    "compile": "tsc"
+    "compile": "rmdir /s /q lib && tsc || tsc",
+    "clean": "rmdir /s /q node_modules"
   },
   "author": "knightyun",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/knightyun/typescript-learning"
+  },
   "dependencies": {
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "typescript-learning": "./"
   },
   "devDependencies": {
     "@types/node": "^14.14.37"

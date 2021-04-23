@@ -12,73 +12,49 @@
 
 
 /************************************************************
- * 声明文件
+ * 声明文件（模块库）
  *
  * ts 中声明文件都以 .d.ts 作为后缀
  * 常用的声明文件模板见：../templates/*
+ * 
+ * 因为要导入的库一般是编译后的代码（例如 ts 编译后的是 js 代码），
+ * 不会包含 ts 代码中的类型、签名 * 等信息，
+ * 所以需要使用声明文件来提供声明，以便编译时识别类型信息，或者在
+ * 编辑器中写代码时动态校验或提示代码相关信息；
+ * 
+ * 如果项目代码本身就是用 ts 写的，则无需再专门分别写声明文件，
+ * 配置 "declaration": true 可以在 ts 编译 js 时自动生成声明文件，
+ * 默认生成的声明文件与原文件并列，配置 "declarationDir": "" 则
+ * 可以将声明文件全部生成到指定目录下，目录结构与源文件一致；
  ************************************************************/
 
 // 首先，不要在声明文件中使用 path 引入指令：
-// /// <reference path="..." />
+// /// <reference path="./other" />
 // 应该使用 types 指令替代（该 npm 包依赖于其他全局库）：
 // /// <reference types="typescript" />
+/// <reference types="./other" />
 // 依赖于模块则使用 import 语句；
 
 
-// 声明 全局变量
-declare var dNum: number;
+export declare type mType = string | number;
 
-// 声明可以带有初始值
-// declare var dNum: number = 1;
+export declare function mFn(arg: mType): mType;
 
-// 声明 只读变量（常量）
-declare const dStr: string;
+export declare const mNum: mType;
 
-// 声明 块级作用域变量（如果存在块）
-declare let dBol: boolean;
+export declare const mStr: oType;
 
-// 全局函数
-declare function dFn(arg: number): number;
+// 虽然语法上可以指定默认值，但是实际值还是取的 index.ts 中对应的值
+// export declare const mNum: mType = 321;
 
-// 申明也可以包含具体实现
-declare function dFn1(arg: number): number {
-  return arg;
-};
 
-// 带有命名空间的变量
-declare namespace DName {
-  // 内部变量不会与全局冲突
-  // 直接写变量申明，不用再加 declare
-  let dNum: number;
+// 如果要使用默认导出，且配置了 "esModuleInterop": true，
+// 且 index.ts 也使用了默认导出，则可以使用下面的语法：
+//   export default function mfn(arg: number): number;
+//
+// 否则只能使用下面的兼容语法替代（index.ts 无需使用 export default）：
+//   declare function mfn(arg: number): number;
+//   export = mfn;
 
-  // 使用嵌套的命名空间
-  namespace DName1 {
-    let dNum1: number;
-  }
-
-  function fn(arg: number, arg2: number): number { return arg + arg2; }
-}
-
-// 声明函数重载
-declare function dFn2(arg: string): boolean;
-declare function dFn2(arg: number): string;
-
-// 声明接口
-declare interface IDeclare {
-  str: string;
-  num?: number;
-  readonly bol: boolean;
-}
-
-// 声明类型
-declare type DType = string | number;
-
-// 声明类
-declare class DCS {
-  protected dVar: string;
-
-  constructor(arg: string) {
-    this.dVar = arg;
-  }
-}
-
+// 如果当前库是 UMD 模块，要暴露全局变量 demo，就使用下面的语法：
+// export as namespace demo;
