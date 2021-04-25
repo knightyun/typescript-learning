@@ -6,9 +6,6 @@
 // 声明 全局变量
 declare var dNum: number;
 
-// 声明可以带有初始值，但实际使用时还是 undefined
-// declare var dNum: number = 1;
-
 // 声明 只读变量（常量）
 declare const dStr: string;
 
@@ -24,6 +21,7 @@ declare function dFn1(arg: number): number {
 };
 
 // 带有命名空间的变量
+// 一般建议全局库都使用命名空间包装，放在命名冲突
 declare namespace DName {
   // 在声明文件中用命名空间时，直接写变量申明，
   // 不用再加 declare 或 export（区别于 ts 文件）

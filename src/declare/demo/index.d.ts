@@ -29,29 +29,36 @@
  ************************************************************/
 
 // 首先，不要在声明文件中使用 path 引入指令：
-// /// <reference path="./other" />
-// 应该使用 types 指令替代（该 npm 包依赖于其他全局库，即声明了全局变量的库），
+// /// <reference path="./other/index.d.ts" />
+// 应该使用 types 指令替代（表示该 npm 包依赖于其他全局库，即声明了全局变量的库），
 // 可以使用相对或者非相对引入：
-// /// <reference types="typescript" />
-// /// <reference types="./other" />
+/// <reference types="./global" />
+// 上面的指令会寻找 ./global.d.ts 或 ./global/index.d.ts 声明文件
+
+// 下面的指令表示引用 typescript 的声明包：
+// 该指令会去寻找 node_modules/@types 或
+// node_modules/typescript 目录下的声明文件
+/// <reference types="typescript" />
+
+// 如果需要使用某些内置的类型，则需要使用 lib 指令，
+// 比如使用 es2017 中的字符串新属性，则引入：
+/// <reference lib="es2017.string" />
 
 
-export declare type dType = string | number;
+// 使用全局库中声明的全局类型时，直接使用即可，
+// 如果使用了命名空间，则需要在变量前添加命名空间访问路径；
+export declare type dType = DType;
 
 export declare function dFn(arg: dType): dType;
 
 export declare const dNum: dType;
+// 虽然语法上可以指定默认值，但是实际值还是取的 index.ts 中对应的值，
+// index.ts 中没有赋值则是 undefined；
+// export declare const dNum: dType = 321;
 
 // 如果依赖于模块库，则需要使 import：
 import { oType } from './other';
 export declare const _oStr: oType;
-
-// 虽然语法上可以指定默认值，但是实际值还是取的 index.ts 中对应的值
-// export declare const mNum: mType = 321;
-
-// 使用引入的全局库中的全局变量，如果全局库用了命名空间，
-// 则需要在变量前添加 命名空间访问路径；
-// export declare const mStr: other.IOther;
 
 
 // 如果要使用默认导出，且配置了 "esModuleInterop": true，

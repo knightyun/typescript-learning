@@ -13,4 +13,5 @@ console.log(dFn(dNum)); // 123
 console.log(dFn(_oStr)); // 'abc'
 
 let num1: dType = 456;
+
 console.log(dFn(num1)); // 456
