@@ -36,8 +36,7 @@
 // 上面的指令会寻找 ./global.d.ts 或 ./global/index.d.ts 声明文件
 
 // 下面的指令表示引用 typescript 的声明包：
-// 该指令会去寻找 node_modules/@types 或
-// node_modules/typescript 目录下的声明文件
+// 该指令会去寻找 node_modules/@types 或 node_modules/typescript 目录下的声明文件
 /// <reference types="typescript" />
 
 // 如果需要使用某些内置的类型，则需要使用 lib 指令，
@@ -69,5 +68,5 @@ export declare const _oStr: oType;
 //   declare function mfn(arg: number): number;
 //   export = mfn;
 
-// 如果当前库是 UMD 模块，要暴露全局变量 demo，就使用下面的语法：
+// 如果当前库是 UMD 模块，要在非模块系统中暴露全局变量 demo，就使用下面的语法：
 // export as namespace demo;

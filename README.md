@@ -47,11 +47,26 @@ TypeScript 学习笔记（`/src` 目录下）
 
 ### 声明
 
-#### 声明文件（[declare/demo/index.d.ts](./src/declare/demo/global.d.ts)）
+#### 声明文件（模块库）
 
-#### 声明使用（[declare/declare.ts](./src/declare/useDeclare.ts)）
+- [declare/demo/index.ts](./src/declare/demo/index.ts)
+- [declare/demo/index.d.ts](./src/declare/demo/index.d.ts)
 
-#### 声明文件模板（[declare/templates/](./src/declare/templates/)）
+#### 声明文件（全局库）
+
+- [declare/demo/global/index.d.ts](./src/declare/demo/global/index.d.ts)
+
+#### 声明文件模板
+
+- [module.d.ts](./src/declare/templates/module.d.ts)
+- [module-plugin.d.ts](./src/declare/templates/module-plugin.d.ts)
+- [module-function.d.ts](./src/declare/templates/module-function.d.ts)
+- [module-class.d.ts](./src/declare/templates/module-class.d.ts)
+- [global.d.ts](./src/declare/templates/global.d.ts)
+- [global-plugin.d.ts](./src/declare/templates/global-plugin.d.ts)
+- [global-modifying-module.d.ts](./src/declare/templates/global-modifying-module.d.ts)
+
+#### 模拟使用模块库（[use.ts](./src/use.ts)）
 
 
 ### 发布（[publish.ts](./src/publish.ts)）

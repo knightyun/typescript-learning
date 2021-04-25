@@ -69,4 +69,23 @@
     "skipLibCheck": true,                           /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
+  /*
+    如果不指定 files 和 include 属性，ts 会默认编译工程目录下除了 exclude 属性指定的文件之外的所有
+    .ts, .d.ts, .tsx 和 .js, .jsx（如果设置 "allowJs": true）文件，"outDir" 目录下的文件会被排除，
+    任何被 files 和 include 文件引用的文件也会被包含进来，除非被 exclude 排除，
+    当 files 属性指定时，只有其指定文件以及 include 的指定文件会被编译，并且 files 的文件总是会被包含，不会被 exclude 属性排除掉；
+    注意 files 中的文件名不能使用通配符（"*", "**"）；
+  */
+  "files": ["./src/use.ts"],
+  /*
+    include 指定包含的文件可以被 exclude 排除掉，需要 ts >= 2.0；
+  */
+  "include": ["./src/**/*"],
+  /*
+    排除 include 中指定的文件，无法排除 files 指定的文件，需要 ts >= 2.0
+    该属性默认会排除 node_modules, bower_components, jspm_packages 和 "outDir" 指定的目录；
+  */
+  "exclude": [],
+  // 继承其他 ts 配置文件
+  // "extends": "",
 }

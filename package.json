@@ -6,7 +6,8 @@
   "types": "./src/declare/demo/index.d.ts",
   "scripts": {
     "compile": "rmdir /s /q lib && tsc || tsc",
-    "clean": "rmdir /s /q node_modules"
+    "cleanNode": "rmdir /s /q node_modules",
+    "cleanLib": "rmdir /s /q lib"
   },
   "author": "knightyun",
   "license": "MIT",
