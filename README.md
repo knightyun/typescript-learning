@@ -22,6 +22,9 @@ TypeScript 学习笔记（`/src` 目录下）
 ### 高级类型（[advancedType.ts](./src/advancedType.ts)）
 
 
+### 装饰器（[decorator.ts](./src/decorator.ts)）
+
+
 ### 模块
 
 #### 导出（[modules/export.ts](./src/modules/export.ts)）
