@@ -62,7 +62,7 @@
     // "inlineSources": true,                       /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
 
     /* Experimental Options */
-    // "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
+    "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,               /* Enables experimental support for emitting type metadata for decorators. */
 
     /* Advanced Options */
@@ -85,7 +85,7 @@
     排除 include 中指定的文件，无法排除 files 指定的文件，需要 ts >= 2.0
     该属性默认会排除 node_modules, bower_components, jspm_packages 和 "outDir" 指定的目录；
   */
-  "exclude": [],
+  "exclude": []
   // 继承其他 ts 配置文件
   // "extends": "",
 }
