@@ -141,6 +141,9 @@ interface IArr {
 
   // 访问字符类型索引时返回任意类型值，比如访问方法名
   [prop: string]: any;
+
+  // [] 中冒号前的单词（index, prop）可任意指定，
+  // 只用于阅读，类似于注释，ts 不作处理和判断
 }
 
 const arr1: IArr = ["a", "b", "c"];
